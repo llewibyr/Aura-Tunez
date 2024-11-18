@@ -1,9 +1,12 @@
-import { Router } from 'express';
+import { songRouter } from 'express';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('Song route with GET method');
-});
+import { addSong, listSong, removeSong } from "../controller/song.controller.js";
 
-export default router;
+
+songRouter.post('/add', upload.fields([{ name: 'image', maxCount: 1}, { name: 'audio', maxCount: 1}]), addSong);
+songRouter.get('/list', listSong);
+songRouter.post('/remove', removeSong);
+
+export default songRouter;

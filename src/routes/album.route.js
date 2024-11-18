@@ -1,9 +1,14 @@
-import { Router } from 'express';
+import { albumRouter } from 'express';
 
-const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('Album route with GET method');
-});
+import { addAlbum, listAlbum, removeAlbum } from '../controller/album.controller.js'
 
-export default router;
+const albumRouter = Router();
+
+albumRouter.post('/add', upload.single('image'), addAlbum);
+albumRouter.get('/list', listAlbum);
+albumRouter.post('/remove', removeAlbum);
+
+
+
+export default albumrouter;
