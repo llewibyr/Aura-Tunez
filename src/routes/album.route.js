@@ -1,14 +1,21 @@
-import { albumRouter } from 'express';
+import express from 'express';
+import { getAlbumDetailsController, searchAlbumsController, addAlbumController, deleteAlbumController, getAllAlbumsController } from '../controllers/album.controller.js';
 
+const router = express.Router();
 
-import { addAlbum, listAlbum, removeAlbum } from '../controller/album.controller.js'
+//get all albums
+router.get('/albums', getAllAlbumsController);
 
-const albumRouter = Router();
+// Get album details
+router.get('/:id', getAlbumDetailsController);
 
-albumRouter.post('/add', upload.single('image'), addAlbum);
-albumRouter.get('/list', listAlbum);
-albumRouter.post('/remove', removeAlbum);
+// Search for albums
+router.get('/search', searchAlbumsController);
 
+// Add a new album
+router.post('/add', addAlbumController);
 
+// Delete an album
+router.delete('/:id/delete', deleteAlbumController);
 
-export default albumrouter;
+export default router;

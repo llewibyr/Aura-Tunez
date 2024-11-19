@@ -1,12 +1,31 @@
-import { songRouter } from 'express';
+import express from 'express';
+import {
+  getSongDetailsController,
+  getAllSongsController,
+  searchSongsController,
+  addSongController,
+  updateSongController,
+  deleteSongController
+} from '../controllers/song.controller.js';
 
-const router = Router();
+const router = express.Router();
 
-import { addSong, listSong, removeSong } from "../controller/song.controller.js";
+// Get all songs from database
+router.get('/', getAllSongsController);
 
+// Get all song details
+router.get('/:id', getSongDetailsController);
 
-songRouter.post('/add', upload.fields([{ name: 'image', maxCount: 1}, { name: 'audio', maxCount: 1}]), addSong);
-songRouter.get('/list', listSong);
-songRouter.post('/remove', removeSong);
+// Search for songs
+router.get('/search', searchSongsController);
 
-export default songRouter;
+// Add a Song
+router.post('/add', addSongController);
+
+// Update a Song
+router.put('/:id/update', updateSongController);
+
+// Delete a Song
+router.delete('/:id/delete', deleteSongController);
+
+export default router;
